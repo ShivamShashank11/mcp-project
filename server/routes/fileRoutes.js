@@ -5,7 +5,7 @@ const path = require('path');
 const router = express.Router();
 const folderPath = path.join(__dirname, '..', 'files');
 
-// ✅ Create File
+
 router.post('/create', (req, res) => {
   const { filename, content } = req.body;
 
@@ -23,7 +23,7 @@ router.post('/create', (req, res) => {
   res.json({ message: 'File created successfully.' });
 });
 
-// ✅ Edit File
+
 router.put('/edit', (req, res) => {
   const { filename, newContent } = req.body;
   const filePath = path.join(folderPath, filename);
@@ -36,7 +36,7 @@ router.put('/edit', (req, res) => {
   res.json({ message: 'File updated successfully.' });
 });
 
-// ✅ Delete File
+
 router.delete('/delete', (req, res) => {
   const { filename } = req.body;
   const filePath = path.join(folderPath, filename);
@@ -49,7 +49,7 @@ router.delete('/delete', (req, res) => {
   res.json({ message: 'File deleted successfully.' });
 });
 
-// ✅ Get list of files with their content
+
 router.get('/files', (req, res) => {
   if (!fs.existsSync(folderPath)) {
     return res.json({ files: [] });
