@@ -1,0 +1,122 @@
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212; 
+  color: #e0e0e0; 
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px 20px;
+  box-sizing: border-box;
+}
+
+
+.container {
+  width: 100%;
+  max-width: 700px;
+  background: #1e1e2f; 
+  padding: 40px 35px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(30, 30, 47, 0.9);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(70, 50, 255, 0.8);
+}
+
+
+h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  color: #7f8fff; 
+  text-shadow: 0 0 8px #5a6eff;
+  user-select: none;
+}
+
+
+.actions {
+  margin-bottom: 30px;
+}
+
+
+.actions button {
+  background: linear-gradient(135deg, #4f63f7, #6e7dff);
+  border: none;
+  color: #f0f0f5;
+  margin: 10px 12px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(79, 99, 247, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  min-width: 140px;
+  user-select: none;
+}
+
+.actions button:hover {
+  background: linear-gradient(135deg, #3e49d1, #5860f0);
+  box-shadow: 0 10px 30px rgba(58, 64, 207, 0.85);
+}
+
+#message {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-top: 20px;
+  min-height: 28px;
+  user-select: none;
+  color: #9aafff; 
+}
+
+
+.files-list {
+  margin-top: 30px;
+  text-align: left;
+  max-height: 350px;
+  overflow-y: auto;
+  border-top: 2px solid #5860f0;
+  padding-top: 20px;
+}
+
+
+.file-item {
+  background: #2c2c44;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  padding: 18px 22px;
+  box-shadow: 0 6px 18px rgba(79, 99, 247, 0.25);
+  transition: background 0.3s ease;
+}
+
+.file-item:hover {
+  background: #3c3c62;
+}
+
+
+.filename {
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  color: #8a9eff;
+}
+
+
+.file-content {
+  background: #1a1a2e;
+  border-radius: 10px;
+  padding: 15px 18px;
+  white-space: pre-wrap;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.95rem;
+  color: #c3cfff;
+  box-shadow: inset 0 0 10px rgba(79, 99, 247, 0.3);
+  user-select: text;
+  line-height: 1.4;
+}

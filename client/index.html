@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MCP File Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📁 MCP File Manager</h1>
+      <div class="actions">
+        <button id="btnCreate">➕ Create File</button>
+        <button id="btnEdit">✏️ Edit File</button>
+        <button id="btnDelete">🗑️ Delete File</button>
+        <button id="btnRefresh">🔄 Refresh List</button>
+      </div>
+
+      <div id="message"></div>
+      <div id="filesList" class="files-list"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const BASE_URL = "http://localhost:5000";
+        const messageBox = document.getElementById("message");
+        const filesList = document.getElementById("filesList");
+
+        function showMessage(text, isError = false) {
+          messageBox.innerText = text;
+          messageBox.style.color = isError ? "red" : "green";
+        }
+
+        function escapeHtml(text) {
+          return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        }
+
+        function renderFiles(files) {
+          if (!files.length) {
+            filesList.innerHTML =
+              '<p style="text-align:center; color:#666;">No files found.</p>';
+            return;
+          }
+          filesList.innerHTML = files
+            .map(
+              (file) => `
+            <div class="file-item">
+              <div class="filename">${escapeHtml(file.filename)}</div>
+              <pre class="file-content">${escapeHtml(file.content)}</pre>
+            </div>`
+            )
+            .join("");
+        }
+
+        async function fetchFiles() {
+          try {
+            const res = await fetch(`${BASE_URL}/files`);
+            if (!res.ok) throw new Error("Failed to fetch files");
+            const data = await res.json();
+            renderFiles(data.files);
+            showMessage("Files list loaded");
+          } catch (error) {
+            showMessage(error.message, true);
+            filesList.innerHTML = "";
+          }
+        }
+
+        async function createFile() {
+          const filename = prompt("Enter file name (e.g., note.txt):");
+          if (!filename) return;
+          const content = prompt("Enter file content:");
+          if (content === null) return;
+
+          try {
+            const res = await fetch(`${BASE_URL}/create`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ filename, content }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || "Error creating file");
+            showMessage(data.message);
+            fetchFiles();
+          } catch (error) {
+            showMessage(error.message, true);
+          }
+        }
+
+        async function editFile() {
+          const filename = prompt("Enter filename to edit:");
+          if (!filename) return;
+          const newContent = prompt("Enter new content:");
+          if (newContent === null) return;
+
+          try {
+            const res = await fetch(`${BASE_URL}/edit`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ filename, newContent }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || "Error editing file");
+            showMessage(data.message);
+            fetchFiles();
+          } catch (error) {
+            showMessage(error.message, true);
+          }
+        }
+
+        async function deleteFile() {
+          const filename = prompt("Enter filename to delete:");
+          if (!filename) return;
+
+          try {
+            const res = await fetch(`${BASE_URL}/delete`, {
+              method: "DELETE",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ filename }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data.message || "Error deleting file");
+            showMessage(data.message);
+            fetchFiles();
+          } catch (error) {
+            showMessage(error.message, true);
+          }
+        }
+
+        // Attach event listeners to buttons
+        document
+          .getElementById("btnCreate")
+          .addEventListener("click", createFile);
+        document.getElementById("btnEdit").addEventListener("click", editFile);
+        document
+          .getElementById("btnDelete")
+          .addEventListener("click", deleteFile);
+        document
+          .getElementById("btnRefresh")
+          .addEventListener("click", fetchFiles);
+
+        // Initial load of files
+        fetchFiles();
+      });
+    </script>
+  </body>
+</html>
