@@ -1,77 +1,84 @@
-MCP File Manager
-Hey there! 👋
+# 📁 MCP File Manager
 
-This is a simple MCP (Minimal Control Panel) File Manager project where you can create, edit, delete, and see files on the server right from a nice frontend UI.
+Hey there! 👋  
+This is a simple MCP (Minimal Control Panel) File Manager project where you can **create**, **edit**, **delete**, and **view files** on the server — right from a smooth, modern frontend UI.
 
-What it can do?
-Create new files with your own content
+---
 
-Edit files that you already have
+## ✅ What it can do?
 
-Delete files you don’t need anymore
+- ➕ Create new files with your own content
+- ✏️ Edit files that you already have
+- 🗑️ Delete files you don’t need anymore
+- 📃 See a list of all files along with their contents on the screen
+- 🌙 Modern, dark-themed, and clean interface that works well on any screen size
 
-See a list of all files along with their contents on the screen
+---
 
-Modern, dark-themed, and clean interface that works well on any screen size
+## 🛠 What’s inside?
 
-What’s inside?
-Backend built with Node.js and Express.js
+- **Backend**: Node.js and Express.js
+- **Frontend**: HTML, CSS, and Vanilla JavaScript
+- **Communication**: REST API calls using `fetch()`
 
-Frontend made with plain HTML, CSS, and JavaScript
+---
 
-Communication between frontend and backend happens via REST API calls using fetch()
+## ⚙️ What do you need to run this?
 
-What do you need to run this?
-Node.js installed on your machine
+- ✅ [Node.js](https://nodejs.org/) installed on your machine
+- ✅ Basic knowledge of terminal/command line
 
-Basic knowledge of running commands on your terminal or command prompt
+---
 
-How to get started?
-Backend setup
-Open your terminal and go to the backend folder if you have one, or just the project folder:
+## 🚀 How to get started?
 
-cd backend
+### 📦 Backend Setup
 
-Install the required packages:
+1. Open terminal and go to the backend folder (or root folder if not separated):
+   ```bash
+   cd backend
+   Install required packages:
+   ```
 
 npm install
+Start the server:
 
-Start the backend server:
-
-If you want auto reload on code changes (recommended for dev):
+For auto-reload on changes (recommended for dev):
 
 npm run dev
-
-Or just start normally:
+Or just run normally:
 
 node index.js
+Backend will be available at:
 
-The backend server will start running at:
 http://localhost:5000
+🌐 Frontend Setup
+Go to the frontend folder if applicable
 
-Frontend setup
-Simply open the index.html file in your favorite browser.
+Open the index.html file in any browser
 
-Make sure your backend server is running so frontend can talk to it.
+⚠️ Make sure your backend server is running, or the frontend won’t work!
 
-How to use it?
-Click Create File to make a new file and add content
+🧑‍💻 How to use it?
+➕ Click Create File to make a new file and add content
 
-Click Edit File to change the content of an existing file
+✏️ Click Edit File to change the content of an existing file
 
-Click Delete File to remove a file you don’t want
+🗑️ Click Delete File to remove a file
 
-Click Refresh List anytime to see the updated files and their contents on screen
+🔄 Click Refresh List to see the latest files and content
 
-API Endpoints (if you want to know)
-Method Endpoint What it does
+                     📡 API Endpoints
+
+Method Endpoint Description
 POST /create Creates a new file
 PUT /edit Edits an existing file
 DELETE /delete Deletes a file
 GET /files Gets list of all files
 
-License
+📄 License
 This project is free to use under the MIT License.
 
-Made with ❤️ by [Shivam Shashank]
-Contact: shivamshashank961@gmail.com
+✍️ Author
+Made with ❤️ by Shivam Shashank
+📧 Email: shivamshashank961@gmail.com
