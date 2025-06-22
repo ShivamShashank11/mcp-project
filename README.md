@@ -70,11 +70,11 @@ Open the index.html file in any browser
 
                      📡 API Endpoints
 
-Method Endpoint Description
-POST /create Creates a new file
-PUT /edit Edits an existing file
-DELETE /delete Deletes a file
-GET /files Gets list of all files
+Method               Endpoint                       Description
+POST                 /create                        Creates a new file
+PUT                  /edit                          Edits an existing file
+DELETE               /delete                        Deletes a file
+GET                  /files                         Gets list of all files
 
 📄 License
 This project is free to use under the MIT License.
